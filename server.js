@@ -1,5 +1,4 @@
 const express = require('express')
-const JSZip = require('jszip')
 const fs = require('fs')
 const { Base64Encode } = require('base64-stream')
 const async = require('async')
