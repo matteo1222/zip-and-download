@@ -18,7 +18,6 @@ app.get('/download', async (req, res) => {
     res.set('Content-disposition', 'attachment; filename=myFile.zip')
 
     // Create zip file
-    // const zip = new JSZip()
     const zip = new Archiver('zip')
 
     zip
@@ -39,7 +38,6 @@ app.get('/download', async (req, res) => {
 
                 if (fs.statSync(filePath).isFile()) {
                     const stream = fs.createReadStream(filePath)
-                    // zip.file(filename, stream)
                     zip.append(stream, { name: filename })
                 }
                 done()
@@ -52,15 +50,6 @@ app.get('/download', async (req, res) => {
             // Send data to client
             console.log(process.memoryUsage())
             zip.finalize()
-            // zip
-            //     .generateNodeStream({type: 'nodebuffer', streamFiles: true})
-            //     .pipe(new Base64Encode())
-            //     .pipe(res)
-            //     .on('finish', function () {
-            //         console.log('Finish sending');
-            //         console.log(process.memoryUsage())
-
-            //     })
         }
     })
 })
