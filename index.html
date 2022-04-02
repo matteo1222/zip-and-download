@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js" integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Download ZIP File</title>
 </head>
-<body>
+<body style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <button id='download'>Download ZIP</button>
     <script>
         const url = 'http://localhost:8888/download'
@@ -21,7 +21,7 @@
 
                 const byteNumbers = new Array(slice.length);
                 for (let i = 0; i < slice.length; i++) {
-                byteNumbers[i] = slice.charCodeAt(i);
+                    byteNumbers[i] = slice.charCodeAt(i);
                 }
 
                 const byteArray = new Uint8Array(byteNumbers);

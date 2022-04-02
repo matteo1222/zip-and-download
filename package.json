@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "archiver": "^5.3.0",
+    "async": "^3.2.3",
+    "base64-stream": "^1.0.0",
     "express": "^4.17.3",
     "jszip": "^3.8.0"
   },
