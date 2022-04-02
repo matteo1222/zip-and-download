@@ -7,6 +7,7 @@ const Archiver = require('archiver')
 
 const app = express()
 const PORT = 8888
+const READ_FILES_IN_PARALLEL_NUM = 10
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'))
@@ -31,8 +32,8 @@ app.get('/download', async (req, res) => {
             fs.readdir(parentDir, cb);
         },
         function (files, cb) {
-            // Consume 10 files in parallel.
-            async.eachLimit(files, 10, function (filename, done) {
+            // Create file read streams in parallel.
+            async.eachLimit(files, READ_FILES_IN_PARALLEL_NUM, function (filename, done) {
                 const filePath = path.join(parentDir, filename)
 
                 if (fs.statSync(filePath).isFile()) {
@@ -43,7 +44,7 @@ app.get('/download', async (req, res) => {
             }, cb)
         }
     ], function (err) {
-        err && console.trace(err)
+        err && console.error(err)
         if (!err) {
             console.log('Done adding files')
             // Send data to client
